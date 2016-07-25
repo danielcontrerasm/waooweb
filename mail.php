@@ -6,7 +6,7 @@
     /*
         EDIT BELOW
      */
-    $to_Email       = "info@waooapp.com"; //Replace with your email address
+    $to_Email       = "futlaos@gmail.com"; //Replace with your email address
     $subject        = 'Correo electrónico enviado desde la pagina web'; //Subject line for emails
     /*
         EDIT ABOVE
@@ -39,7 +39,7 @@
         die($output);
     }
 
-    $sentMail = mail($to_Email, $subject, $user_Message .'  -'.$user_Name, $headers);
+    $sentMail = @mail($to_Email, $subject, $user_Message .'  -'.$user_Name, $headers);
    
     if(!$sentMail) {
         $output = json_encode(array('type'=>'error', 'text' => 'Error del servidor, no pudo enviar correo electrónico. Lo siento por los inconvenientes ocasionados.'));
