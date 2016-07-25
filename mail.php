@@ -6,7 +6,7 @@
     /*
         EDIT BELOW
      */
-    $to_Email       = "futlaos@gmail.com"; //Replace with your email address
+    $to_Email       = "info@waooapp.com"; //Replace with your email address
     $subject        = 'Correo electrónico enviado desde la pagina web'; //Subject line for emails
     /*
         EDIT ABOVE
