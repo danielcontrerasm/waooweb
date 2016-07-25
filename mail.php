@@ -7,7 +7,7 @@
         EDIT BELOW
      */
     $to_Email       = "info@waooapp.com"; //Replace with your email address
-    $subject        = 'Correo electrÛnico enviado desde la pagina web'; //Subject line for emails
+    $subject        = 'Correo electr√≥nico enviado desde la pagina web'; //Subject line for emails
     /*
         EDIT ABOVE
      */
@@ -27,11 +27,11 @@
     $user_Message     = filter_var($_POST["message"], FILTER_SANITIZE_STRING);
 
     if(strlen($user_Name)<4) {
-        $output = json_encode(array('type'=>'error', 'text' => 'El nombre es demasiado corto o est· vacÌo!'));
+        $output = json_encode(array('type'=>'error', 'text' => 'El nombre es demasiado corto o est√° vac√≠o!'));
         die($output);
     }
     if(!filter_var($user_Email, FILTER_VALIDATE_EMAIL)) {
-        $output = json_encode(array('type'=>'error', 'text' => '°Por favor introduzca una direcciÛn de correo electrÛnico v·lida!'));
+        $output = json_encode(array('type'=>'error', 'text' => '¬°Por favor introduzca una direcci√≥n de correo electr√≥nico v√°lida!'));
         die($output);
     }
     if(strlen($user_Message)<5) {
@@ -39,13 +39,13 @@
         die($output);
     }
 
-    $sentMail = @mail($to_Email, $subject, $user_Message .'  -'.$user_Name, $headers);
+    $sentMail = mail($to_Email, $subject, $user_Message .'  -'.$user_Name, $headers);
    
     if(!$sentMail) {
-        $output = json_encode(array('type'=>'error', 'text' => 'Error del servidor, no pudo enviar correo electrÛnico. Lo siento por los inconvenientes ocasionados.'));
+        $output = json_encode(array('type'=>'error', 'text' => 'Error del servidor, no pudo enviar correo electr√≥nico. Lo siento por los inconvenientes ocasionados.'));
         die($output);
     } else {
-        $output = json_encode(array('type'=>'success', 'text' => '°Mensaje enviado con exito!'));
+        $output = json_encode(array('type'=>'success', 'text' => '¬°Mensaje enviado con exito!'));
         die($output);
     }
 ?>
