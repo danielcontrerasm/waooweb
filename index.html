@@ -436,22 +436,39 @@
   			<h1 class="sectionTitle">Soporte</h1>
   			<h3 class="sectionDescription">Para obtener más información y apoyo, póngase en contacto con nosotros!</h3>
   			<div class="separator50"></div>
-  			<div class="row">
-  				<div class="col-md-8 col-md-offset-2">
-  					<form name="sendmail" id="sendmail" action="mail.php" method="POST">
-  						<div class="formWrap"><i class="icon-user"></i><input type="text" name="name" placeholder="Nombre..." required/></div>
-  						<div class="separator20"></div>
-  						<div class="formWrap"><i class="icon-envelope"></i><input type="email" name="email" placeholder="Email..." required/></div>
-  						<div class="separator20"></div>
-  						<div class="formWrap"><textarea rows="6" name="message" placeholder="Mensaje" required></textarea></div>
-  						<div class="separator20"></div>
-  						<div class="formWrap text-center">
-  							<input type="submit" value="ENVIAR"> <i class="fa fa-spin fa-circle-o-notch fa-form-wait" style="display: none;"></i>
-  						</div>
-  					</form>
-  					<p id="formSubmitMessage"></p>
-  				</div>
-  			</div>
+        <div class="row">
+          <div class="col-lg-12">
+            <form name="sentMessage" id="contactForm" novalidate>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nombre *" id="name" required data-validation-required-message="Por favor ingrese su nombre.">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email *" id="email" required data-validation-required-message="Por favor ingrese su nombre email.">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Telefono *" id="phone" required data-validation-required-message="Por favor ingrese su numero de telefono.">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <textarea class="form-control" placeholder=" Mensaje *" id="message" required data-validation-required-message="Por favor ingrese su mensaje."></textarea>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-12 text-center">
+                  <div id="success"></div>
+                  <button type="submit" class="btn btn-xl">Enviar Mensaje</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
   			<div class="separator50"></div>
   			<div class="row contactText">
   				<div class="col-md-5 col-md-offset-2">
@@ -530,5 +547,6 @@
   	<script src="js/jquery-2.1.1.min.js"></script>
   	<script src="js/jquery.prettyPhoto.js"></script>
   	<script src="js/coretheme.min.js"></script>
+  	<script src="js/contact_me.js"></script>
   </body>
 </html>
