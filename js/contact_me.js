@@ -1,6 +1,6 @@
 // Contact Form Scripts
 
-/*$(function() {
+$(function() {
 
     $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
         preventSubmit: true,
@@ -63,9 +63,14 @@
         e.preventDefault();
         $(this).tab("show");
     });
-});*/
+});
+/*When clicking on Full hide fail/success boxes */
+$('#name').focus(function() {
+    $('#success').html('');
+});
 
-$("#contactForm").on('submit',function (event) {
+
+/*$("#contactForm").on('submit',function (event) {
   event.preventDefault(); // prevent default submit behaviour
   // get values from FORM
   var name = $("input#name").val();
@@ -116,4 +121,4 @@ $("#contactForm").on('submit',function (event) {
 /*When clicking on Full hide fail/success boxes */
 $('#name').focus(function() {
     $('#success').html('');
-});
+});*/
