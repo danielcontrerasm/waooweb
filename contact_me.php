@@ -17,7 +17,7 @@
   $email_body = "Ha recibido un nuevo mensaje de su formulario de contacto web.\n\n"."Aquí están los detalles:\n\nNombre: $name\n\nEmail: $email_address\n\nTelefono: $phone\n\nMensaje:\n$message";
   $from = new SendGrid\Email(null, $email_address);
   $subject = "WAOO:  $name";
-  $to = new SendGrid\Email(null, "futlaos@gmail.com");
+  $to = new SendGrid\Email(null, "info@waooapp.com");
   $content = new SendGrid\Content("text/plain", $email_body);
   $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
