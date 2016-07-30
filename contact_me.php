@@ -1,84 +1,30 @@
 <?php
-// Check for empty fields
-if(empty($_POST['name'])      ||
-   empty($_POST['email'])     ||
-   empty($_POST['phone'])     ||
-   empty($_POST['message'])   ||
-   !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
-   {
-   echo "No arguments Provided!";
-   return false;
-   }
-   
-$name = strip_tags(htmlspecialchars($_POST['name']));
-$email_address = strip_tags(htmlspecialchars($_POST['email']));
-$phone = strip_tags(htmlspecialchars($_POST['phone']));
-$message = strip_tags(htmlspecialchars($_POST['message']));
-   
-// Create the email and send the message
-$to = 'futlaos@gmail.com'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
-$email_subject = "WAOO:  $name";
-$email_body = "Ha recibido un nuevo mensaje de su formulario de contacto web.\n\n"."Aquí están los detalles:\n\nNombre: $name\n\nEmail: $email_address\n\nTelefono: $phone\n\nMensaje:\n$message";
-$headers = "From: WAOO\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-$headers .= "Reply-To: $email_address";   
-mail($to,$email_subject,$email_body,$headers);
-return true;         
+  // Check for empty fields
+  if(empty($_POST['name'])     ||
+    empty($_POST['email'])     ||
+    empty($_POST['phone'])     ||
+    empty($_POST['message'])   ||
+    !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
+    {
+    echo "No arguments Provided!";
+    return false;
+  }
+  require("./sendgrid/sendgrid-php.php");
+  $name = strip_tags(htmlspecialchars($_POST['name']));
+  $email_address = strip_tags(htmlspecialchars($_POST['email']));
+  $phone = strip_tags(htmlspecialchars($_POST['phone']));
+  $message = strip_tags(htmlspecialchars($_POST['message']));
+  $email_body = "Ha recibido un nuevo mensaje de su formulario de contacto web.\n\n"."Aquí están los detalles:\n\nNombre: $name\n\nEmail: $email_address\n\nTelefono: $phone\n\nMensaje:\n$message";
+  $from = new SendGrid\Email(null, $email_address);
+  $subject = "WAOO:  $name";
+  $to = new SendGrid\Email(null, "futlaos@gmail.com");
+  $content = new SendGrid\Content("text/plain", $email_body);
+  $mail = new SendGrid\Mail($from, $subject, $to, $content);
+
+  //$apiKey = getenv('SENDGRID_API_KEY');
+  $apiKey = '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';
+  $sg = new \SendGrid($apiKey);
+
+  $response = $sg->client->mail()->send()->post($mail);
+  if($response->statusCode() == 202) echo 'ok';
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Check for empty fields
-/*if(empty($_POST['name'])      ||
-   empty($_POST['email'])     ||
-   empty($_POST['phone'])     ||
-   empty($_POST['message'])   ||
-   !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
-   {
-   echo "No arguments Provided!";
-   return false;
-   }
-
-$name = strip_tags(htmlspecialchars($_POST['name']));
-$email_address = strip_tags(htmlspecialchars($_POST['email']));
-$phone = strip_tags(htmlspecialchars($_POST['phone']));
-$message = strip_tags(htmlspecialchars($_POST['message']));
-
-// Create the email and send the message
-$to = 'info@waooapp.com'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
-$email_subject = "WAOO:  $name";
-$email_body = "Ha recibido un nuevo mensaje de su formulario de contacto web..\n\n"."Aquí están los detalles:\n\nNombre: $name\n\nEmail: $email_address\n\nTelefono: $phone\n\nMensaje:\n$message";
-$headers = "From: WAOO\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-$headers .= "Reply-To: $email_address";
-mail($to,$email_subject,$email_body,$headers);
-return true;
-?>/*
